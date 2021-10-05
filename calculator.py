@@ -1,0 +1,122 @@
+from tkinter import *
+
+
+def click(event):
+    # event.widget will give the button that has been clicked and .cget function will give us the text value of teh
+    # button eg., button 9 will give the value of as 9. ""ek button widget se text kaise nikala jaye""
+
+    global scvalue  # making scvalue global so that we can make changes in it inside teh function
+    text = event.widget.cget("text")
+    print(text)
+    if text == "=":
+        if scvalue.get().isdigit():
+            value = int(scvalue.get())
+        else:
+            value = eval(screen.get())
+        scvalue.set(value)
+        screen.update()
+
+    elif text == "C":
+        scvalue.set("")
+        screen.update()
+    else:
+        # text ki value leke entry widget mei patk denge
+        scvalue.set(scvalue.get() + text)
+        screen.update()
+
+
+root = Tk()
+root.geometry("500x470")
+root.title("My Personal Calculator for Daily Use")
+root.wm_iconbitmap("2.ico")
+
+scvalue = StringVar()
+scvalue.set("")
+screen = Entry(root, textvar=scvalue, font="lucidia 40 bold", bg="light grey")
+screen.pack(fill=X)
+
+f1 = Frame(root)
+b = Button(f1, text="9", padx=23, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+b = Button(f1, text="8", padx=23, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+b = Button(f1, text="7", padx=23, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+b = Button(f1, text="/", padx=23, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+b = Button(f1, text="e", padx=23, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+b = Button(f1, text="C", padx=23, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+f1.pack()
+
+f1 = Frame(root)
+b = Button(f1, text="4", padx=24, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+b = Button(f1, text="5", padx=24, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+b = Button(f1, text="6", padx=24, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+b = Button(f1, text="*", padx=24, pady=20, font="Arial 21 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+b = Button(f1, text="(", padx=24, pady=20, font="Arial 21 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+b = Button(f1, text=")", padx=24, pady=20, font="Arial 21 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+f1.pack()
+
+f1 = Frame(root)
+b = Button(f1, text="3", padx=23, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+b = Button(f1, text="2", padx=23, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+b = Button(f1, text="1", padx=23, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+b = Button(f1, text="-", padx=23, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+b = Button(f1, text="^", padx=23, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+b = Button(f1, text="%", padx=23, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+f1.pack()
+
+f1 = Frame(root)
+b = Button(f1, text=".", padx=23, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+b = Button(f1, text="0", padx=23, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+b = Button(f1, text="=", padx=23, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+b = Button(f1, text="+", padx=23, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+b = Button(f1, text="ln", padx=23, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+b = Button(f1, text="π", padx=23, pady=20, font="Arial 20 italic")
+b.pack(side=LEFT, fill=X)
+b.bind('<Button-1>', click)
+f1.pack()
+
+root.mainloop()
